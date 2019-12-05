@@ -3,6 +3,9 @@
 # require "bundler/setup"
 #require_relative "../lib/museum.rb"
 require_relative "../config/enviroment.rb"
+
+
+
 # require "enviroment.rb"
 # require "museum"
 
@@ -14,8 +17,12 @@ require_relative "../config/enviroment.rb"
 # Pry.start
 
 # require "irb"
-m = Museum.new
-m.run
+
+
+CLI.new.start
+
+
+
 #IRB.start(__FILE__)
 
 
