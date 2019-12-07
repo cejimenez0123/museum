@@ -22,7 +22,7 @@ class CLI < Scraper
     end
     def check_date
         @museums_of_day = Museum.all.find_all do |museum|
-            museum.days.include?(@date) || museum.days.include?("Always free") || museum.days.include?("Everyday")
+            museum.days.include?(@date) || museum.days.include?("Always free") 
         end
         @museums_of_day.each.with_index do |k,i|
             puts "#{i+1}. #{k.name}"
