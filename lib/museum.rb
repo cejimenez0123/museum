@@ -1,13 +1,13 @@
 require_relative '../config/enviroment.rb'
-require_relative '../lib/scraper.rb'
 class Museum
-  attr_accessor  :name , :days , :neighborhood, :link, :bio
+  attr_accessor  :name , :days , :neighborhood, :url, :bio, :hours, :address, :transport
   @@all = []
   
   def initialize(hash)
    @name = hash[:name]
     @days = hash[:days]
     @neighborhood = hash[:neighborhood]
+    @url = hash[:url]
    @@all << self
   end
   def self.all
