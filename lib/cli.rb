@@ -31,20 +31,20 @@ class CLI < Scraper
      end
      def stage_two
         puts "Pick a number to learn more of a museum, or 0 to pick a different date"
-        @answer = gets.chomp
+        @answer = gets.chomp   
         if @answer == "0"
-            start
-        elsif @answer != "0"   
+            start 
+        elsif @answer.to_i > 0 && @answer.to_i <= @museums_of_day.size  
             second_page(@museums_of_day[@answer.to_i-1])
             bio
         else 
             puts "Please Try again"
+            check_date
             stage_two
         end
      end
 
-    def bio    
-        
+    def bio       
         if @museums_of_day[@answer.to_i-1].bio == "Information Error. Sorry we don't have info about the museum you selected"
             puts @museums_of_day[@answer.to_i-1].bio
             check_date           
@@ -57,14 +57,14 @@ class CLI < Scraper
            puts "Open Hours: #{@museums_of_day[@answer.to_i-1].hours}"
            puts "Address: #{@museums_of_day[@answer.to_i-1].address}"
            puts " \n\n\n Do you want some directions?(y/n) "
-           direction
+           direction_choice
         elsif answer == "2"
             check_date
         else "Try Again"
             bio
         end
     end
-    def direction
+    def direction_choice
         answer = gets.chomp
         if answer == "y" 
             puts "\n\n\n#{@museums_of_day[@answer.to_i-1].transport}\n\n\n\n"

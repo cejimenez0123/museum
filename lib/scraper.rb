@@ -3,18 +3,15 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 class Scraper
-
     def scrape
         base_url = "https://www.timeout.com"
         html = open("#{base_url}#{@page}")
         @doc = Nokogiri::HTML(html)
     end
-
     def museums
         museums_info = @doc.search(".tiles").css("article")
         @node_elements = @doc.css(".tiles .listCard .card-content")[0..-2]
     end
-
     def first_page
         @page = "/newyork/museums/free-museum-days-in-nyc"
         scrape
