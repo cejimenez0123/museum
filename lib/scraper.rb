@@ -31,10 +31,12 @@ class Scraper
         scrape
         bio_node_element = @doc.css('.sm-pt1.sm-pb1')
         details_node = @doc.css('.listing_details')
-        museo.hours = details_node.css('td').css('td.xs-px0').children[-4].text.strip
-        museo.address = details_node.css('td').children[0].text.strip
-        museo.transport = details_node.css('td').children[8].text
-        if bio_node_element.css('div [itemprop^="reviewBody"]')  
+        museo.hours = details_node.css('td').css('td.xs-px0').children[-4].text.strip if details_node.css('td').css('td.xs-px0').children[-4]
+        museo.address = details_node.css('td').children[0].text.strip if details_node.css('td').children[0]
+        museo.transport = details_node.css('td').children[8].text if details_node.css('td').children[8]
+        if !details_node.css('td').children[0]
+            museo.bio = "Information Error. Sorry we don't have info about the museum you selected"
+        elsif bio_node_element.css('div [itemprop^="reviewBody"]')  
             museo.bio = bio_node_element.css('div [itemprop^="reviewBody"]').text
         else
             museo.bio = "Information Error. Sorry we don't have info about the museum you selected"

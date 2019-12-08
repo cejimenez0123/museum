@@ -19,7 +19,7 @@ require_relative "../config/enviroment.rb"
 # require "irb"
 
 
-CLI.new.start
+CLI.new.run
 
 
 

@@ -4,8 +4,8 @@ class CLI < Scraper
         self.call
     end
     def run
-        puts "Hello, I heard you're spending sometime in New York City."
-        puts "Save some money by going to one of the great free or low cost museums of NYC"
+        puts "\n\n\nHello, I heard you're spending sometime in New York City."
+        puts "Save some money by going to one of the great free or low cost museums of NYC\n\n\n"
         start
     end
     def start
@@ -42,15 +42,14 @@ class CLI < Scraper
             check_date
             stage_two
         end
-     end
-
+    end
     def bio       
         if @museums_of_day[@answer.to_i-1].bio == "Information Error. Sorry we don't have info about the museum you selected"
             puts @museums_of_day[@answer.to_i-1].bio
             check_date           
-        else puts @museums_of_day[@answer.to_i-1].bio
-            puts "\nDo you like this museum and want to learn more/or pick a different museum(1/2)"
-            
+        else 
+            puts @museums_of_day[@answer.to_i-1].bio
+            puts "\nDo you like this museum and want to learn more/or pick a different museum(1/2)"     
             answer = gets.chomp 
         end
         if answer == "1"
@@ -60,7 +59,8 @@ class CLI < Scraper
            direction_choice
         elsif answer == "2"
             check_date
-        else "Try Again"
+        else
+            puts "Try Again"
             bio
         end
     end
@@ -74,15 +74,13 @@ class CLI < Scraper
             start
         else 
             puts "Please Try again"
-            direction
+            direction_choice
         end
     end
-   
     def call
         scraper = Scraper.new
         scraper.first_page
-        # scraper.second_page
+        run
     end
-
 end
  
