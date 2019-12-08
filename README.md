@@ -2,7 +2,7 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/museum`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
+The gem lets you find what museum are free to low cost in New York City. Using scraped information. It scrapes the website. Asks the user the day they are available. Returns a list of museums which are available on the day put in by user. User recieves list of available museums where they can choose to learn more about a museum. When choosing a museum the user recieves a short description of the museum. The user can request more information where they will get hours and location of museum. If user is satisfied they can recieve a route of how to get to said museum. Puts out an away message as closer. 
 
 ## Installation
 
