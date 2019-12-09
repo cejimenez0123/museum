@@ -18,7 +18,7 @@ class CLI < Scraper
             puts "Please Try Again"
             start 
         end
-        stage_two
+        learn_more
     end
     def check_date
         @museums_of_day = Museum.all.find_all do |museum|
@@ -27,9 +27,9 @@ class CLI < Scraper
         @museums_of_day.each.with_index do |k,i|
             puts "#{i+1}. #{k.name}"
         end
-        stage_two
+        learn_more
      end
-     def stage_two
+     def learn_more
         puts "Pick a number to learn more of a museum, or 0 to pick a different date"
         @answer = gets.chomp   
         if @answer == "0"
@@ -40,7 +40,7 @@ class CLI < Scraper
         else 
             puts "Please Try again"
             check_date
-            stage_two
+            learn_more
         end
     end
     def bio       
