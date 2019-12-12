@@ -4,6 +4,7 @@ require 'open-uri'
 require 'pry'
 class Scraper
     def scrape
+        puts "Please, give a moment to retrieve the information."
         base_url = "https://www.timeout.com"
         html = open("#{base_url}#{@page}")
         @doc = Nokogiri::HTML(html)
