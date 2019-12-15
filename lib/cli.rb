@@ -1,9 +1,6 @@
-require 'pry'
-class CLI < Scraper
-    def initialize
-        self.call
-    end
+class CLI 
     def run
+        Scraper.new.first_page
         puts "\n\n\nHello, I heard you're spending sometime in New York City."
         puts "Save some money by going to one of the great free or low cost museums of NYC\n\n\n"
         start
@@ -35,7 +32,7 @@ class CLI < Scraper
         if @answer == "0"
             start 
         elsif @answer.to_i > 0 && @answer.to_i <= @museums_of_day.size  
-            second_page(@museums_of_day[@answer.to_i-1])
+            Scraper.new.second_page(@museums_of_day[@answer.to_i-1])
             bio
         else 
             puts "Please Try again"
@@ -44,14 +41,17 @@ class CLI < Scraper
         end
     end
     def bio       
-        if @museums_of_day[@answer.to_i-1].bio == "Information Error. Sorry we don't have info about the museum you selected"
+        if @museums_of_day[@answer.to_i-1].bio == "Information Error. Sorry we don't have info about the museum you selected\n\n\n"
             puts @museums_of_day[@answer.to_i-1].bio
             check_date           
         else 
-            puts @museums_of_day[@answer.to_i-1].bio
-            puts "\nDo you like this museum and want to learn more/or pick a different museum(1/2)"     
-            answer = gets.chomp 
+            puts @museums_of_day[@answer.to_i-1].bio     
+            schedule_choice
         end
+    end
+    def schedule_choice
+        puts "\nDo you like this museum and want to learn more/or pick a different museum(1/2)"
+        answer = gets.chomp
         if answer == "1"
            puts "Open Hours: #{@museums_of_day[@answer.to_i-1].hours}"
            puts "Address: #{@museums_of_day[@answer.to_i-1].address}"
@@ -76,11 +76,6 @@ class CLI < Scraper
             puts "Please Try again"
             direction_choice
         end
-    end
-    def call
-        scraper = Scraper.new
-        scraper.first_page
-        run
     end
 end
  

@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require_relative "../config/enviroment.rb"
+CLI.new.run

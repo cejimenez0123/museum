@@ -1,4 +1,3 @@
-require_relative '../config/enviroment.rb'
 class Museum
   attr_accessor  :name , :days , :neighborhood, :url, :bio, :hours, :address, :transport
   @@all = []  
