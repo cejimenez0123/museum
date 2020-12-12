@@ -1,9 +1,18 @@
+
+require "open-uri"
+require "nokogiri"
+require_relative "./museum.rb"
+require "byebug"
 class Scraper
     def scrape
         puts "Please, give a moment to retrieve the information."
         base_url = "https://www.timeout.com"
+        @page = "/newyork/museums/free-museum-days-in-nyc"
         html = open("#{base_url}#{@page}")
+        
         @doc = Nokogiri::HTML(html)
+       
+       
     end
     def museums
         museums_info = @doc.search(".tiles").css("article")
@@ -12,16 +21,18 @@ class Scraper
     def first_page
         @page = "/newyork/museums/free-museum-days-in-nyc"
         self.scrape
-        museums
+        self.museums
+        
         @node_elements.map do |node|
             hash =  {
-                        name: node.css("h3").text.strip,             
+                        name: node.css("h3").text.strip.split(".")[1],             
                         days: node.css(".info-wrapper p:nth-child(2)").text.strip,
                         neighborhood: node.css(".list_feature__tags .list_feature__tag_item").text.strip,  
                         url: node.css(".buttons a")[0]['href']
                     }
             Museum.new(hash)
         end
+        byebug
     end
     def second_page(museo)
         @page = museo.url 
@@ -41,3 +52,4 @@ class Scraper
         end
     end
 end
+Scraper.new.first_page
